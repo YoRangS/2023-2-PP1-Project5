@@ -3,118 +3,87 @@ package com.example.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.jdbc.core.RowMapper;
 
 import com.example.util.JDBCUtil;
 import com.example.bean.AlbumVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+class AlbumRowMapper implements RowMapper<AlbumVO> {
+    @Override
+    public AlbumVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+        AlbumVO vo = new AlbumVO();
+        vo.setID(rs.getInt("ID"));
+        vo.setName(rs.getString("Name"));
+        vo.setArtist(rs.getString("Artist"));
+        vo.setSongAmount(rs.getInt("SongAmount"));
+        vo.setLikes(rs.getInt("Likes"));
+        vo.setRegDate(rs.getDate("RegDate"));
+        vo.setDibs(rs.getBoolean("Dibs"));
+        return vo;
+    }
+}
+
+@Repository
 public class AlbumDAO {
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
     Connection conn = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
 
-    private final String MUSIC_INSERT = "insert into songlist (Name, Artist, SongAmount, Likes, RegDate, Dibs) values (?,?,?,?,?,?)";
-    private final String MUSIC_UPDATE = "update songlist set Name=?, Artist=?, SongAmount=?, Likes=?, RegDate=? Dibs=? where ID=?";
-    private final String MUSIC_DELETE = "delete from songlist where ID=?";
-    private final String MUSIC_GET = "select * from songlist where ID=?";
-    private final String MUSIC_LIST = "select * from songlist order by ID desc";
+    private final String ALBUM_INSERT = "insert into albumlist (Name, Artist, SongAmount, Likes, RegDate, Dibs) values (?,?,?,?,?,?)";
+    private final String ALBUM_UPDATE = "update albumlist set Name=?, Artist=?, SongAmount=?, Likes=?, RegDate=? Dibs=? where ID=?";
+    private final String ALBUM_DELETE = "delete from albumlist where ID=?";
+    private final String ALBUM_GET = "select * from albumlist where ID=?";
+    private final String ALBUM_LIST = "select * from albumlist order by ID desc";
 
-    public int insertMusic(AlbumVO vo) {
-        System.out.println("===> JDBC로 insertMusic() 기능 처리");
+    public int insertALBUM(AlbumVO vo) {
+        System.out.println("===> JDBC로 insertALBUM() 기능 처리");
         System.out.println("Name: " + vo.getName() + "\tArtist:" + vo.getArtist() + "\tSongAmount:" + vo.getSongAmount() + "\tLikes:" + vo.getLikes());
-        try {
-            conn = JDBCUtil.getConnection();
-            stmt = conn.prepareStatement(MUSIC_INSERT);
-            stmt.setString(1, vo.getName());
-            stmt.setString(2, vo.getArtist());
-            stmt.setInt(3, vo.getSongAmount());
-            stmt.setInt(4, vo.getLikes());
-            stmt.setDate(5, vo.getRegDate());
-            stmt.setBoolean(6, vo.getDibs());
-            stmt.executeUpdate();
-            return 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
+        String sql = "insert into albumlist (Name, Artist, SongAmount, Likes, RegDate, Dibs) values ("
+                + "'" + vo.getName() + "',"
+                + "'" + vo.getArtist() + "',"
+                + "" + vo.getSongAmount() + ","
+                + "" + vo.getLikes() + ","
+                + "'" + vo.getRegDate() + "',"
+                + "'" + vo.getDibs() + "'";
+        return jdbcTemplate.update(sql);
     }
 
     // 글 삭제
-    public void deleteMusic(AlbumVO vo) {
-        System.out.println("===> JDBC로 deleteMusic() 기능 처리");
-        try {
-            conn = JDBCUtil.getConnection();
-            stmt = conn.prepareStatement(MUSIC_DELETE);
-            stmt.setInt(1, vo.getID());
-            stmt.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public int deleteALBUM(int id) {
+        System.out.println("===> JDBC로 deleteALBUM() 기능 처리");
+        String sql = "delete from albumlist where ID='" + id;
+        return jdbcTemplate.update(sql);
     }
-    public int updateMusic(AlbumVO vo) {
-        System.out.println("===> JDBC로 updateMusic() 기능 처리");
-        try {
-            conn = JDBCUtil.getConnection();
-            stmt = conn.prepareStatement(MUSIC_UPDATE);
-            stmt.setString(1, vo.getName());
-            stmt.setString(2, vo.getArtist());
-            stmt.setInt(3, vo.getSongAmount());
-            stmt.setInt(4, vo.getLikes());
-            stmt.setInt(5, vo.getID());
-
-            System.out.println(vo.getName() + "-" + vo.getArtist() + "-" + vo.getSongAmount() + "-" + vo.getLikes() + "-" + vo.getID());
-            stmt.executeUpdate();
-            return 1;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
+    public int updateALBUM(AlbumVO vo) {
+        System.out.println("===> JDBC로 updateALBUM() 기능 처리");
+        String sql = "update albumlist set Name='" + vo.getName() + "',"
+                + "Artist='" + vo.getArtist() + "',"
+                + "SongAmount='" + vo.getSongAmount() + "',"
+                + "Likes='" + vo.getLikes() + "',"
+                + "RegDate='" + vo.getRegDate() + "',"
+                + "Dibs='" + vo.getDibs() + "' where ID=" + vo.getID();
+        return jdbcTemplate.update(sql);
     }
 
-    public AlbumVO getMusic(int ID) {
-        AlbumVO one = new AlbumVO();
-        System.out.println("===> JDBC로 getMusic() 기능 처리");
-        try {
-            conn = JDBCUtil.getConnection();
-            stmt = conn.prepareStatement(MUSIC_GET);
-            stmt.setInt(1, ID);
-            rs = stmt.executeQuery();
-            if(rs.next()) {
-                one.setID(rs.getInt("ID"));
-                one.setName(rs.getString("Name"));
-                one.setArtist(rs.getString("Artist"));
-                one.setSongAmount(rs.getInt("SongAmount"));
-                one.setLikes(rs.getInt("Likes"));
-            }
-            rs.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return one;
+    public AlbumVO getALBUM(int ID) {
+        System.out.println("===> JDBC로 getALBUM() 기능 처리");
+        String sql = "select * from albumlist where ID=" + ID;
+        return jdbcTemplate.queryForObject(sql, new AlbumRowMapper());
     }
 
-    public List<AlbumVO> getMusicList(){
-        List<AlbumVO> list = new ArrayList<AlbumVO>();
-        System.out.println("===> JDBC로 getMusicList() 기능 처리");
-        try {
-            conn = JDBCUtil.getConnection();
-            stmt = conn.prepareStatement(MUSIC_LIST);
-            rs = stmt.executeQuery();
-            while(rs.next()) {
-                AlbumVO one = new AlbumVO();
-                one.setID(rs.getInt("ID"));
-                one.setName(rs.getString("Name"));
-                one.setArtist(rs.getString("Artist"));
-                one.setSongAmount(rs.getInt("SongAmount"));
-                one.setLikes(rs.getInt("Likes"));
-                list.add(one);
-            }
-            rs.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return list;
+    public List<AlbumVO> getALBUMList(){
+        System.out.println("===> JDBC로 getALBUMList() 기능 처리");
+        String sql = "select * from albumlist order by ID desc";
+        return jdbcTemplate.query(sql, new AlbumRowMapper());
     }
 }
