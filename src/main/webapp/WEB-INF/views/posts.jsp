@@ -70,7 +70,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${list}" var="u">
+                <c:forEach items="${posts}" var="u">
                     <tr>
                         <td>${u.getID()}</td>
                         <td>${u.getName()}</td>
