@@ -45,7 +45,7 @@ public class AlbumController {
     public String edit(@PathVariable("id") int id, Model model) {
         AlbumVO albumVO = albumServcice.getAlbum(id);
         model.addAttribute("u", albumVO);
-        return "edit";
+        return "editform";
     }
 
     @RequestMapping(value="/editok", method = RequestMethod.POST)

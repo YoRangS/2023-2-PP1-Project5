@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@page import="com.example.dao.ALBUMDAO, com.example.bean.AlbumVO"%>
+<%@page import="com.example.dao.AlbumDAO, com.example.bean.AlbumVO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,9 +44,9 @@
 <body>
 
 <%
-    ALBUMDAO ALBUMDAO = new ALBUMDAO();
+    AlbumDAO albumDAO = new AlbumDAO();
     String id=request.getParameter("ID");
-    AlbumVO u=ALBUMDAO.getALBUM(Integer.parseInt(id));
+    AlbumVO u=albumDAO.getALBUM(Integer.parseInt(id));
 %>
 
 <main class="main">
