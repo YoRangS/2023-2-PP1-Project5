@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@page import="com.example.dao.ALBUMDAO, com.example.bean.AlbumVO,java.util.*"%>
+<%@page import="com.example.dao.AlbumDAO, com.example.bean.AlbumVO,java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -53,11 +53,6 @@
     <div class="container">
         <br><h1 style="text-align: center;">ALBUM List</h1><br>
     </div>
-    <%
-        ALBUMDAO ALBUMDAO = new ALBUMDAO();
-        List<AlbumVO> list = ALBUMDAO.getALBUMList();
-        request.setAttribute("list",list);
-    %>
     <div class="row">
         <div class="col-2 col-s-1"></div>
         <div class="col-8 col-s-10 table-responsive small">
@@ -75,7 +70,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${list}" var="u">
+                <c:forEach items="${posts}" var="u">
                     <tr>
                         <td>${u.getID()}</td>
                         <td>${u.getName()}</td>

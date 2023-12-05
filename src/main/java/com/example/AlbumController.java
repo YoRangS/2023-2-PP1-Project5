@@ -16,10 +16,15 @@ public class AlbumController {
     @Autowired
     AlbumService albumServcice;
 
-    @RequestMapping(value="/list", method = RequestMethod.GET)
+    @RequestMapping(value="/")
+    public String index() {
+        return "posts";
+    }
+
+    @RequestMapping(value="/posts", method = RequestMethod.GET)
     public String albumlist(Model model){
-        model.addAttribute("list", albumServcice.getAlbumList());
-        return "list";
+        model.addAttribute("posts", albumServcice.getAlbumList());
+        return "posts";
     }
 
     @RequestMapping(value="/add", method = RequestMethod.GET)
