@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@page import="com.example.dao.ALBUMDAO, com.example.bean.AlbumVO"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page import="com.example.AlbumDAO, com.example.AlbumVO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,7 @@
 <body>
 
 <%
-    ALBUMDAO ALBUMDAO = new ALBUMDAO();
+    AlbumDAO ALBUMDAO = new AlbumDAO();
     String id=request.getParameter("ID");
     AlbumVO u=ALBUMDAO.getALBUM(Integer.parseInt(id));
 %>

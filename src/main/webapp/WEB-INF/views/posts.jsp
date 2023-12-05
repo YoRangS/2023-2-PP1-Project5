@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@page import="com.example.dao.AlbumDAO, com.example.bean.AlbumVO,java.util.*"%>
+         isELIgnored="false" pageEncoding="UTF-8"%>
+<%@page import="com.example.AlbumDAO, com.example.AlbumVO,java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -70,7 +70,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${posts}" var="u">
+                <c:forEach items="${list}" var="u">
                     <tr>
                         <td>${u.getID()}</td>
                         <td>${u.getName()}</td>
@@ -89,7 +89,7 @@
     <%--<br/><a href="addpostform.jsp">Add New Post</a>--%>
     <br/>
     <div class="d-flex gap-2 justify-content-center">
-        <button class="btn btn-primary d-inline-flex align-items-center" type="button" onclick="location.href='addpostform.jsp'">
+        <button class="btn btn-primary d-inline-flex align-items-center" type="button" onclick="location.href='add'">
             Add New Post
         </button>
     </div>
