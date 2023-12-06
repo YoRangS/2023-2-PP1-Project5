@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@page import="com.example.dao.AlbumDAO, com.example.bean.AlbumVO,java.util.*"%>
+         isELIgnored="false" pageEncoding="UTF-8"%>
+<%@page import="com.example.AlbumDAO, com.example.AlbumVO,java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -44,7 +44,7 @@
     <script>
         function delete_ok(id){
             var a = confirm("정말로 삭제하겠습니까?");
-            if(a) location.href='deletepost.jsp?ID=' + id;
+            if(a) location.href='deleteok/' + id;
         }
     </script>
 </head>
@@ -77,8 +77,8 @@
                         <td>${u.getArtist()}</td>
                         <td>${u.getSongAmount()}</td>
                         <td>${u.getLikes()}</td>
-                        <td><a href="view.jsp?ID=${u.getID()}">View</a></td>
-                        <td><a href="editform.jsp?ID=${u.getID()}">Edit</a></td>
+                        <td><a href="view/ID=${u.getID()}">View</a></td>
+                        <td><a href="editform/ID=${u.getID()}">Edit</a></td>
                         <td><a href="javascript:delete_ok('${u.getID()}')">Delete</a></td>
                     </tr>
                 </c:forEach>
@@ -89,7 +89,7 @@
     <%--<br/><a href="addpostform.jsp">Add New Post</a>--%>
     <br/>
     <div class="d-flex gap-2 justify-content-center">
-        <button class="btn btn-primary d-inline-flex align-items-center" type="button" onclick="location.href='addpostform.jsp'">
+        <button class="btn btn-primary d-inline-flex align-items-center" type="button" onclick="location.href='add'">
             Add New Post
         </button>
     </div>

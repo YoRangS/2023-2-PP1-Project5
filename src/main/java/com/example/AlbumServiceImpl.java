@@ -1,7 +1,5 @@
 package com.example;
 
-import com.example.bean.AlbumVO;
-import com.example.dao.AlbumDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

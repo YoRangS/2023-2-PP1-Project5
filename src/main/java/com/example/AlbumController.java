@@ -1,9 +1,7 @@
 package com.example;
 
-import com.example.bean.AlbumVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,18 +31,18 @@ public class AlbumController {
     }
 
     @RequestMapping(value="/addok", method = RequestMethod.POST)
-    public String addOk(AlbumVO vo) {
+    public String addPostOK(AlbumVO vo) {
         if(albumServcice.insertAlbum(vo) == 0)
             System.out.println("앨범 추가 실패");
         else
             System.out.println("앨범 추가 성공!");
-        return "redirect:../list";
+        return "redirect:posts";
     }
 
-    @RequestMapping(value="/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value="/editform/ID={id}", method = RequestMethod.GET)
     public String edit(@PathVariable("id") int id, Model model) {
         AlbumVO albumVO = albumServcice.getAlbum(id);
-        model.addAttribute("u", albumVO);
+        model.addAttribute("post", albumVO);
         return "editform";
     }
 
@@ -54,15 +52,15 @@ public class AlbumController {
             System.out.println("앨범 수정 실패");
         else
             System.out.println("앨범 수정 성공!");
-        return "redirect:list";
+        return "redirect:posts";
     }
 
     @RequestMapping(value="/deleteok/{id}", method = RequestMethod.GET)
-    public String editOk(@PathVariable("id") int id) {
+    public String deletePostOk(@PathVariable("id") int id) {
         if(albumServcice.deleteAlbum(id) == 0)
             System.out.println("앨범 삭제 실패");
         else
             System.out.println("앨범 삭제 성공!");
-        return "redirect:../list";
+        return "redirect:../posts";
     }
 }

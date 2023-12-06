@@ -48,7 +48,7 @@
     <div class="row">
         <div class="col-2 col-s-1"></div>
         <div class="col-8 col-s-10 table-responsive small">
-            <form name="add" action="addpost.jsp" method="post" onsubmit="return validateForm()">
+            <form name="add" action="addok" method="post" onsubmit="return validateForm()">
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-12 col-md-offset-3">
@@ -75,12 +75,14 @@
                 </div>
                 <div class="row">
                     <div class="col-3 col-s-9">
-                        <button class="btn btn-primary d-inline-flex align-items-center" type="button" onclick="location.href='posts.jsp'">
+                        <button class="btn btn-primary d-inline-flex align-items-center" type="button" onclick="location.href='posts'">
                             View All Records
                         </button>
                     </div>
                     <div class="col-2 col-s-1">
-                        <input class="btn btn-primary d-inline-flex align-items-center" type="submit" value="Add Post"></button>
+                        <button class="btn btn-primary d-inline-flex align-items-center" type="submit" >
+                           Add Post
+                        </button>
                     </div><br>
                 </div>
             </form>

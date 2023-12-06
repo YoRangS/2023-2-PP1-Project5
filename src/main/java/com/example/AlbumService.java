@@ -1,7 +1,5 @@
 package com.example;
 
-import com.example.bean.AlbumVO;
-
 import java.util.List;
 
 public interface AlbumService {

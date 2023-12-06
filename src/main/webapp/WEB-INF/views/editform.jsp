@@ -1,6 +1,9 @@
+<%@ page import="com.example.AlbumVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@page import="com.example.dao.AlbumDAO, com.example.bean.AlbumVO"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%--<%@page import="com.example.AlbumDAO, com.example.AlbumVO"%>--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,11 +46,11 @@
 </head>
 <body>
 
-<%
-    AlbumDAO albumDAO = new AlbumDAO();
-    String id=request.getParameter("ID");
-    AlbumVO u=albumDAO.getALBUM(Integer.parseInt(id));
-%>
+<%--<%--%>
+<%--    AlbumDAO ALBUMDAO = new AlbumDAO();--%>
+<%--    String id=request.getParameter("ID");--%>
+<%--    AlbumVO u=ALBUMDAO.getALBUM(Integer.parseInt(id));--%>
+<%--%>--%>
 
 <main class="main">
     <div class="container">
@@ -57,29 +60,29 @@
         <div class="col-2 col-s-1"></div>
         <div class="col-8 col-s-10 table-responsive small">
             <form name="edit" action="editpost.jsp" method="post" onsubmit="return validateForm()">
-                <input type="hidden" name="ID" value="<%=u.getID() %>"/>
+                <input type="hidden" name="ID" value="${post.getID()}"/>
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-12 col-md-offset-3">
-                        <input type="text" class="form-control" name="Name" value="<%= u.getName()%>">
+                        <input type="text" class="form-control" name="Name" value="${post.getName()}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Artist</label>
                     <div class="col-sm-12 col-md-offset-3">
-                        <input type="text" class="form-control" name="Artist" value="<%= u.getArtist()%>">
+                        <input type="text" class="form-control" name="Artist" value="${post.getArtist()}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">SongAmount</label>
                     <div class="col-sm-12 col-md-offset-3">
-                        <input type="text" class="form-control" name="SongAmount" value="<%= u.getSongAmount()%>">
+                        <input type="text" class="form-control" name="SongAmount" value="${post.getSongAmount()}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Likes</label>
                     <div class="col-sm-12 col-md-offset-3">
-                        <input type="text" class="form-control" name="Likes" value="<%= u.getLikes()%>">
+                        <input type="text" class="form-control" name="Likes" value="${post.getLikes()}">
                     </div>
                 </div>
                 <div class="row">

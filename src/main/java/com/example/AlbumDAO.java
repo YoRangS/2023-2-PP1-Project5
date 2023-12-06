@@ -1,18 +1,16 @@
-package com.example.dao;
+package com.example;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.AbstractCollection;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.example.util.JDBCUtil;
-import com.example.bean.AlbumVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.stereotype.Repository;
 
 class AlbumRowMapper implements RowMapper<AlbumVO> {
@@ -54,14 +52,14 @@ public class AlbumDAO {
                 + "" + vo.getSongAmount() + ","
                 + "" + vo.getLikes() + ","
                 + "'" + vo.getRegDate() + "',"
-                + "'" + vo.getDibs() + "'";
+                + "'" + vo.getDibs() + "')";
         return jdbcTemplate.update(sql);
     }
 
     // 글 삭제
     public int deleteALBUM(int id) {
         System.out.println("===> JDBC로 deleteALBUM() 기능 처리");
-        String sql = "delete from albumlist where ID='" + id;
+        String sql = "delete from albumlist where ID=" + id;
         return jdbcTemplate.update(sql);
     }
     public int updateALBUM(AlbumVO vo) {
