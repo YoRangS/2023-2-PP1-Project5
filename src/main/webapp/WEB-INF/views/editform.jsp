@@ -59,7 +59,7 @@
     <div class="row">
         <div class="col-2 col-s-1"></div>
         <div class="col-8 col-s-10 table-responsive small">
-            <form name="edit" action="editpost.jsp" method="post" onsubmit="return validateForm()">
+            <form name="edit" action="../editok" method="post" onsubmit="return validateForm()">
                 <input type="hidden" name="ID" value="${post.getID()}"/>
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Name</label>
