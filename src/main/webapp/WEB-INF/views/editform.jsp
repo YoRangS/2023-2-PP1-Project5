@@ -85,6 +85,28 @@
                         <input type="text" class="form-control" name="Likes" value="${post.getLikes()}">
                     </div>
                 </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">RegDate</label>
+                    <div class="col-sm-12 col-md-offset-3">
+                        <input type="date" class="form-control" name="RegDate" value="${post.getRegDate()}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Dibs</label>
+                    <div class="col-sm-12 col-md-offset-3">
+                        <c:choose>
+                            <c:when test="${post.getDibs() eq true}">
+                                <input type="checkbox" name="Dibs" value="1" checked>
+<%--                                <p>true</p>--%>
+                            </c:when>
+                            <c:when test="${post.getDibs() eq false}">
+                                <input type="checkbox" name="Dibs" value="1">
+<%--                                <p>false</p>--%>
+                            </c:when>
+                        </c:choose>
+<%--                        <input type="checkbox" name="Dibs" value="${post.getDibs()}">--%>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-2 col-s-9">
                         <input class="btn btn-primary d-inline-flex align-items-center" type="submit" value="Edit Post"></button>
@@ -123,6 +145,13 @@
                     if (Likes.value == '') {
                         alert("좋아요 수를 입력하세요");
                         Likes.focus();
+                        return false;
+                    }
+
+                    var RegDate = document.edit.RegDate;
+                    if (RegDate.value == '') {
+                        alert("등록날짜를 입력하세요");
+                        RegDate.focus();
                         return false;
                     }
                 }

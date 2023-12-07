@@ -64,6 +64,8 @@
                     <th>Artist</th>
                     <th>SongAmount</th>
                     <th>Likes</th>
+                    <th>RegDate</th>
+                    <th>Dibs</th>
                     <th>View</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -77,6 +79,8 @@
                         <td>${u.getArtist()}</td>
                         <td>${u.getSongAmount()}</td>
                         <td>${u.getLikes()}</td>
+                        <td>${u.getRegDate()}</td>
+                        <td>${u.getDibs()}</td>
                         <td><a href="view/ID=${u.getID()}">View</a></td>
                         <td><a href="editform/ID=${u.getID()}">Edit</a></td>
                         <td><a href="javascript:delete_ok('${u.getID()}')">Delete</a></td>

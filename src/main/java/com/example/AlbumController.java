@@ -25,6 +25,13 @@ public class AlbumController {
         return "posts";
     }
 
+    @RequestMapping(value="/view/ID={id}", method = RequestMethod.GET)
+    public String view(@PathVariable("id") int id, Model model){
+        AlbumVO albumVO = albumServcice.getAlbum(id);
+        model.addAttribute("post", albumVO);
+        return "view";
+    }
+
     @RequestMapping(value="/add", method = RequestMethod.GET)
     public String add() {
         return "addform";

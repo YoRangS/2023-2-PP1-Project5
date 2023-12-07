@@ -73,6 +73,20 @@
                         <input type="text" class="form-control" name="Likes">
                     </div>
                 </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">RegDate</label>
+                    <div class="col-sm-12 col-md-offset-3">
+                        <input type="date" class="form-control" name="RegDate">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Dibs</label>
+                    <div class="col-sm-12 col-md-offset-3">
+<%--                        <input type="radio" name="Dibs" value="true"/> 찜--%>
+<%--                        <input type="radio" name="Dibs" value="false" checked/> 찜 안함--%>
+                        <input type="checkbox" name="Dibs" value="1">
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-3 col-s-9">
                         <button class="btn btn-primary d-inline-flex align-items-center" type="button" onclick="location.href='posts'">
