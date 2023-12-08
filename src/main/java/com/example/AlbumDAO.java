@@ -47,14 +47,14 @@ public class AlbumDAO {
     public int insertALBUM(AlbumVO vo) {
         System.out.println("===> JDBC로 insertALBUM() 기능 처리");
         System.out.println("Name: " + vo.getName() + "\tArtist:" + vo.getArtist() + "\tSongAmount:" + vo.getSongAmount() +
-                "\tLikes:" + vo.getLikes() + "\tRegDate:" + vo.getRegDate() + "\tDibs:" + vo.getDibs());
+                "\tLikes:" + vo.getLikes() + "\tRegDate:" + vo.getRegDate() + "\tDibs:" + vo.getDibs() + " end");
         String sql = "insert into albumlist (Name, Artist, SongAmount, Likes, RegDate, Dibs) values ("
                 + "'" + vo.getName() + "',"
                 + "'" + vo.getArtist() + "',"
                 + "" + vo.getSongAmount() + ","
                 + "" + vo.getLikes() + ","
                 + "'" + vo.getRegDate() + "',"
-                + "'" + ((vo.getDibs() != null) ? "true" : "false") + "')";
+                + "'" + ((vo.getDibs() != null) ? 1 : 0) + "')";
         return jdbcTemplate.update(sql);
     }
 
@@ -66,12 +66,14 @@ public class AlbumDAO {
     }
     public int updateALBUM(AlbumVO vo) {
         System.out.println("===> JDBC로 updateALBUM() 기능 처리");
+        System.out.println("Name: " + vo.getName() + "\tArtist:" + vo.getArtist() + "\tSongAmount:" + vo.getSongAmount() +
+                "\tLikes:" + vo.getLikes() + "\tRegDate:" + vo.getRegDate() + "\tDibs:" + vo.getDibs() + " end");
         String sql = "update albumlist set Name='" + vo.getName() + "',"
                 + "Artist='" + vo.getArtist() + "',"
                 + "SongAmount='" + vo.getSongAmount() + "',"
                 + "Likes='" + vo.getLikes() + "',"
                 + "RegDate='" + vo.getRegDate() + "',"
-                + "Dibs='" + ((vo.getDibs() != null) ? "true" : "false") + "' where ID=" + vo.getID();
+                + "Dibs='" + ((vo.getDibs() != null) ? 1 : 0) + "' where ID=" + vo.getID();
         return jdbcTemplate.update(sql);
     }
 
