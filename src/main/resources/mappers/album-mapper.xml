@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Album">
+    <insert id="insertALBUM">
+        insert into albumlist (Name, Artist, SongAmount, Likes, RegDate, Dibs)
+        values
+        (#{Name}, #{Artist}, #{SongAmount}, #{Likes}, #{RegDate}, #{Dibs})
+    </insert>
+    <update id="updateALBUM">
+        update albumlist
+        set Name=#{Name}, Artist=#{Artist}, SongAmount=#{SongAmount}, Likes=#{Likes}, RegDate=#{RegDate}, Dibs=#{Dibs}
+        where ID=#{ID}
+    </update>
+    <delete id="deleteALBUM">
+        delete from albumlist where ID=#{ID}
+    </delete>
+    <select id="getALBUM" resultType="album">
+        select * from albumlist where ID=#{ID}
+    </select>
+    <select id="getALBUMList" resultType="album">
+        select * from albumlist order by ID desc
+    </select>
+</mapper>

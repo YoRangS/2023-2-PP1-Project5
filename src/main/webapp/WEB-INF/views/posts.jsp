@@ -80,7 +80,17 @@
                         <td>${u.getSongAmount()}</td>
                         <td>${u.getLikes()}</td>
                         <td>${u.getRegDate()}</td>
-                        <td>${u.getDibs()}</td>
+                        <c:choose>
+                            <c:when test="${u.getDibs() eq true}">
+                                <td>찜</td>
+                            </c:when>
+                            <c:when test="${u.getDibs() eq false}">
+                                <td></td>
+                            </c:when>
+                            <c:otherwise>
+                                <td>Error!</td>
+                            </c:otherwise>
+                        </c:choose>
                         <td><a href="view/ID=${u.getID()}">View</a></td>
                         <td><a href="editform/ID=${u.getID()}">Edit</a></td>
                         <td><a href="javascript:delete_ok('${u.getID()}')">Delete</a></td>

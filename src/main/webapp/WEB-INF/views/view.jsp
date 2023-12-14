@@ -48,7 +48,14 @@
                     <td>${post.getSongAmount()}</td>
                     <td>${post.getLikes()}</td>
                     <td>${post.getRegDate()}</td>
-                    <td>${post.getDibs()}</td>
+                    <c:choose>
+                        <c:when test="${u.getDibs() eq true}">
+                            <td>찜</td>
+                        </c:when>
+                        <c:when test="${u.getDibs() eq false}">
+                            <td></td>
+                        </c:when>
+                    </c:choose>
                 </tr>
                 </tbody>
             </table>
