@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>login page</title>
     <style>
         img,label {
             display:inline-block;
