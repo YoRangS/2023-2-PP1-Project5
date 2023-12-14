@@ -5,5 +5,6 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="album" type="com.example.AlbumVO"/>
+        <typeAlias alias="User" type="com.example.UserVO"/>
     </typeAliases>
 </configuration>

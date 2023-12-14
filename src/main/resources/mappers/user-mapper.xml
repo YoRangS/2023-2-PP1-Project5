@@ -3,6 +3,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="User">
     <select id="getUser" resultType="com.example.UserVO">
-        select userid, username from member where userid=#{userid} and password=password(#{password})
+        select userid, username from member where userid=#{userid} and password=#{password}
     </select>
 </mapper>

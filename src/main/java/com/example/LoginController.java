@@ -28,7 +28,7 @@ public class LoginController {
         if ( loginvo != null ){ // 로그인성공
             System.out.println("login success!");
             session.setAttribute("login", loginvo);
-            returnURL = "redirect:/album/list";
+            returnURL = "redirect:/album/posts";
         } else { // 로그인실패
             System.out.println("login failed!");
             returnURL = "redirect:/login/login";
